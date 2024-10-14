@@ -83,24 +83,22 @@ def admin_menu():
 
 def user_menu():
     # name = input("Enter Your Name: ")
-    email = input("Enter Your Email: ")
+    if arif_bank.admin is not None:
+        user = arif_bank.admin.create_account(name, email, address, account_type)
+        email = input("Enter Your Email: ")
   
-    exisiting_user =arif_bank.admin.get_existing_user(email)
+        exisiting_user =arif_bank.admin.get_existing_user(email)
     
-    if exisiting_user:
-        user = exisiting_user
-        print(f"Welcome Mr. {user.name}")
-    else:
-        name = input("Enter Your Name: ")
-        address = input("Enter Your Address: ")
-        account_type = input("Enter Account Type (Savings/Current): ")
-
-        if arif_bank.admin is not None:
-            user = arif_bank.admin.create_account(name, email, address, account_type)
+        if exisiting_user:
+            user = exisiting_user
+            print(f"Welcome Mr. {user.name}")
         else:
-            print("Error: There is no Admin. Please at first add Admin.")
+            name = input("Enter Your Name: ")
+            address = input("Enter Your Address: ")
+            account_type = input("Enter Account Type (Savings/Current): ")
 
-    while True:
+
+        while True:
                 print(f"\nWelcome Mr. {user.name} !!")
                 print("1. Deposit Money")
                 print("2. Withdraw Money")
@@ -150,7 +148,9 @@ def user_menu():
 
                 else:
                     print("Error: Invalid Input, please try again.")
-
+    else:
+        print("Error: There is no Admin. Please at first add Admin.")
+        
 while True:
     print(f"\nWelcome to {arif_bank.bank_name}!!")
     print("1. Admin")
