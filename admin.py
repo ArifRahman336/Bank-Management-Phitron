@@ -5,6 +5,7 @@ class Admin:
         self.email = email
         self.password = password
         self.address = address
+        self.bank_balance = 0
         self.users = []
         self.loan_feature_on = True
 
